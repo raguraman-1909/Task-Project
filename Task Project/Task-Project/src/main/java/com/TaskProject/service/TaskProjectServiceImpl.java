@@ -45,5 +45,6 @@ public class TaskProjectServiceImpl implements TaskProjectService {
     @Override
     public String deleteTaskProject(String userId) {
         taskProjectRepo.deleteById(userId); //Delete the user by using userId
+    return "Sucessfully Deleted";
     }
 }
