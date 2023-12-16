@@ -1,6 +1,6 @@
-package com.TaskProject.Task.Project.service;
+package com.TaskProject.service;
 
-import com.TaskProject.Task.Project.model.TaskProject;
+import com.TaskProject.model.TaskProject;
 
 import java.util.List;
 

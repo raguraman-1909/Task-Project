@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/taskmagerdb?useSSL=false
+    url: jdbc:mysql://localhost:3306/taskmanagerdb?useSSL=false
     username : root
     password : root@123
 
@@ -8,4 +8,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
 

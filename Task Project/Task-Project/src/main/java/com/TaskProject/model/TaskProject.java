@@ -1,4 +1,4 @@
-package com.TaskProject.Task.Project.model;
+package com.TaskProject.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

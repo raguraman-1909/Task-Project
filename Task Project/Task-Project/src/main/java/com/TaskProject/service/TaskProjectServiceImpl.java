@@ -1,15 +1,18 @@
-package com.TaskProject.Task.Project.service;
+package com.TaskProject.service;
 
-import com.TaskProject.Task.Project.model.TaskProject;
-import com.TaskProject.Task.Project.repository.TaskProjectRepo;
+import com.TaskProject.exception.TaskManagerNotFoundException;
+import com.TaskProject.model.TaskProject;
+import com.TaskProject.repository.TaskProjectRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TaskProjectServiceImpl implements TaskProjectService{
+public class TaskProjectServiceImpl implements TaskProjectService {
 
     TaskProjectRepo taskProjectRepo;
+    @Autowired
     public TaskProjectServiceImpl(TaskProjectRepo taskProjectRepo) {
         this.taskProjectRepo = taskProjectRepo;
     }
@@ -29,6 +32,8 @@ public class TaskProjectServiceImpl implements TaskProjectService{
 
     @Override
     public TaskProject getTaskProject(String userId) {
+        if(taskProjectRepo.findById(userId).isEmpty())
+            throw new TaskManagerNotFoundException("Requested Task does not exist");
         return  taskProjectRepo.findById(userId).get(); //find by id and using get method to get the value
     }
 

@@ -1,7 +1,8 @@
-package com.TaskProject.Task.Project.model;
+package com.TaskProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class TaskProjectApplication {
