@@ -4,21 +4,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name= "user_details")
+@Table(name= "user_details") //for table in db
 public class TaskProject {
     @Id
     private String userId;
     private String userName;
     private String userPassword;
     private String description;
-    private String dueDate;
+    private LocalDate dueDate;
     private String status;
 
     public TaskProject() {
     }
 
-    public TaskProject(String userId, String userName, String userPassword, String description, String dueDate, String status) {
+    public TaskProject(String userId, String userName, String userPassword, String description, LocalDate dueDate, String status) {
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -59,11 +61,11 @@ public class TaskProject {
         this.description = description;
     }
 
-    public String getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -74,4 +76,10 @@ public class TaskProject {
     public void setStatus(String status) {
         this.status = status;
     }
+  /*If you want to change the date format
+   public void setDueDate(String dueDate) {
+        // Define the date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        // Parse the input string to a LocalDate
+        this.dueDate = LocalDate.parse(dueDate, formatter);*/
 }

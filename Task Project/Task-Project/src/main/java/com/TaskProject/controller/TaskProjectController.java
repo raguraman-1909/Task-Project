@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping  ("/taskmanager")
+@RequestMapping  ("/task_manager")
 public class TaskProjectController {
-    TaskProjectService taskProjectService;   // instance of service layer because contol layer is communicating with the service layer
+    TaskProjectService taskProjectService;   // instance of service layer because control layer is communicating with the service layer
     public TaskProjectController(TaskProjectService taskProjectService) {
         this.taskProjectService = taskProjectService;
     }
 
     //read one user from DB
     @GetMapping("{userId}")
-    public TaskProject getTaskProjectDetails(@PathVariable("userId") String userId) //whatever userid is coming (pathvariable)here it will be used in string and finally extracted
+    public TaskProject getTaskProjectDetails(@PathVariable("userId") String userId) //whatever userid is coming (Path variable)here it will be used in string and finally extracted
     {
         return taskProjectService.getTaskProject(userId); //to get the user details by using userid
     }
 
     //read all user from DB
     @GetMapping()
-    public List<TaskProject> getAllTaskProjectDetails() //whatever userid is coming (pathvariable)here it will be used in string and finally extracted
+    public List<TaskProject> getAllTaskProjectDetails() //whatever userid is coming (Path variable)here it will be used in string and finally extracted
     {
         return   taskProjectService.getAllTaskProject(); //to get all the user details by using list
     }

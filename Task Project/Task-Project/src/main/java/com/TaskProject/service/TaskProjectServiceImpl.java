@@ -20,13 +20,13 @@ public class TaskProjectServiceImpl implements TaskProjectService {
 
     @Override
     public String createTaskProject(TaskProject taskProject) {
-        taskProjectRepo.save(taskProject);  //passing the entity(taskproject) with this the data via repository layer will be saved inside the database
+        taskProjectRepo.save(taskProject);  //passing the entity(TaskProject) with this the data via repository layer will be saved inside the database
         return "Successfully Created";
     }
 
     @Override
     public String updateTaskProject(TaskProject taskProject) {
-        taskProjectRepo.save(taskProject);
+        taskProjectRepo.save(taskProject);  // for update if you want to change the dueDate or status etc...
         return "Successfully Updated";
     }
 
@@ -39,12 +39,11 @@ public class TaskProjectServiceImpl implements TaskProjectService {
 
     @Override
     public List<TaskProject> getAllTaskProject() {
-        return taskProjectRepo.findAll();   // getting all the data by using findall method
+        return taskProjectRepo.findAll();   // getting all the data by using findAll method
     }
 
     @Override
     public String deleteTaskProject(String userId) {
-        taskProjectRepo.deleteById(userId);
-        return "Successfully Deleted";
+        taskProjectRepo.deleteById(userId); //Delete the user by using userId
     }
 }
