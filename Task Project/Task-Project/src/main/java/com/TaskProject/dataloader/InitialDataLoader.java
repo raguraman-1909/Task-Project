@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+//Loads initial data into the system on application startup.
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -41,6 +42,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         this.roleService = roleService;
     }
 
+     Loads initial data into the system when the application context is refreshed.
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         // ROLES --------------------------------------------------------------------------------------------------------
@@ -60,7 +62,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         User manager = new User("manager@mail.com", "Manager", "manager@123");
         userService.createUser(manager);
         userService.changeRoleToAdmin(manager);
-        //3
+        //3 // 3 to 7 - Regular users
         userService.createUser(new User("mark@mail.com", "Mark", "112233"));
         //4
         userService.createUser(new User("ann@mail.com", "Ann", "112233"));
@@ -133,7 +135,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
                 + "' for owner: " + getOwnerNameOrNoOwner(t)).forEach(logger::info);
     }
 
-
+    //Helper method to get owner name or indicate "no owner" for a task.
     private String getOwnerNameOrNoOwner(Task task) {
         return task.getOwner() == null ? "no owner" : task.getOwner().getName();
     }
