@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+// REST controller for handling role-related operations.
 @RestController
 @RequestMapping("/api/roles")
 public class RoleController {
@@ -19,7 +19,8 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-
+    //Creates a new role based on the provided Role object.
+    //ResponseEntity with a success message if the role is created successfully.
     @PostMapping
     public ResponseEntity<String> createRole(@RequestBody Role role) {
 
