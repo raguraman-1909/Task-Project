@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//Implementation of the TaskService interface for managing tasks.
 @Service
 public class TaskServiceImpl implements TaskService {
     private TaskRepository taskRepository;
@@ -18,11 +19,13 @@ public class TaskServiceImpl implements TaskService {
         this.taskRepository = taskRepository;
     }
 
+    //Creates a new task.
     @Override
     public void createTask(Task task) {
         taskRepository.save(task);
     }
 
+    //Updates an existing task.
     @Override
     public void updateTask(Long id, Task updatedTask) {
         Task task = taskRepository.getOne(id);
@@ -33,17 +36,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteTask(Long id) {
+    public void deleteTask(Long id) {    //Deleting the task by its id
         taskRepository.deleteById(id);
     }
 
     @Override
-    public List<Task> findAll() {
+    public List<Task> findAll() {    //to find all task
         return taskRepository.findAll();
     }
 
     @Override
-    public List<Task> findByOwnerOrderByDateDesc(User user) {
+    public List<Task> findByOwnerOrderByDateDesc(User user) {    //find the task by the owner order in decending order
         return taskRepository.findByOwnerOrderByDateDesc(user);
     }
 
