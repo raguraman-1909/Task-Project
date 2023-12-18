@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+//Represents a user role in the system.
 @Entity
 public class Role {
 
