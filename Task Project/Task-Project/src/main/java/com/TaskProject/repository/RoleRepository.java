@@ -1,11 +1,11 @@
 package com.TaskProject.repository;
 
-
-import com.TaskProject.model.TaskProject;
+import com.TaskProject.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 @Repository
-public interface TaskProjectRepo extends JpaRepository <TaskProject, String> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+    Role findByRole(String user);
 }
+
