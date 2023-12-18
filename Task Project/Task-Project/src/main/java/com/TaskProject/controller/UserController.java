@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+//REST controller and MVC controller for handling user-related operations.
 @RestController
 @RequestMapping("/api/users")
-@Controller
 public class UserController {
 
     private final UserService userService;
@@ -23,6 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    //Retrieves a list of users and renders the user view.
     @GetMapping("/users")
     public String listUsers(Model model, SecurityContextHolderAwareRequestWrapper request) {
         boolean isAdminSigned = request.isUserInRole("ROLE_ADMIN");
@@ -32,6 +32,7 @@ public class UserController {
         return "views/tasks";
     }
 
+    //Deletes a user based on the provided user ID.
     @GetMapping("user/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
