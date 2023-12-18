@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
+//Represents a task in the system with details such as name, description, date, completion status, creator, and owner.
 @Entity
 @Table(name = "task_details")
 public class Task {
@@ -32,6 +33,7 @@ public class Task {
     @JoinColumn(name = "OWNER_ID")
     private User owner;
 
+    //Calculates the number of days left until the task's deadline.
     public long daysLeftUntilDeadline(LocalDate date) {
         return ChronoUnit.DAYS.between(LocalDate.now(), date);
     }
@@ -39,6 +41,7 @@ public class Task {
     public Task() {
     }
 
+    // Constructor to create a task with basic information.
     public Task(@NotEmpty String name,
                 @NotEmpty @Size(max = 1200) String description,
                 @NotNull LocalDate date,
@@ -51,6 +54,7 @@ public class Task {
         this.creatorName = creatorName;
     }
 
+    //Constructor to create a task with detailed information, including the owner.
     public Task(@NotEmpty String name,
                 @NotEmpty @Size(max = 1200) String description,
                 @NotNull LocalDate date,
