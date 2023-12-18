@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-
+//Represents a user in the system with associated tasks and roles.
 @Entity
 @Table(name = "User_details")
 public class User {
@@ -37,26 +37,31 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
+    // Retrieves a list of completed tasks owned by the user.
     public List<Task> getTasksCompleted() {
         return tasksOwned.stream()
                 .filter(Task::isCompleted)
                 .collect(Collectors.toList());
     }
 
+    //It give a list of tasks that are in progress
     public List<Task> getTasksInProgress() {
         return tasksOwned.stream()
                 .filter(task -> !task.isCompleted())
                 .collect(Collectors.toList());
     }
 
+    // Checks if the user has the admin role.
     public boolean isAdmin() {
         String roleName = "ADMIN";
         return roles.stream().map(Role::getRole).anyMatch(roleName::equals);
     }
 
     public User() {
+        //Default Constructor
     }
 
+    //Constructor to create a user with basic information.
     public User(@Email @NotEmpty String email,
                 @NotEmpty String name,
                 @NotEmpty @Length(min = 5) String password
@@ -67,6 +72,7 @@ public class User {
 
     }
 
+    //Constructor to create a user with detailed information.
     public User(@Email @NotEmpty String email,
                 @NotEmpty String name,
                 @NotEmpty @Length(min = 5) String password,
