@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//Implementation of the RoleService interface for managing roles.
 @Service
 public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
@@ -16,11 +17,13 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
+    //to create a role
     @Override
     public Role createRole(Role role) {
         return roleRepository.save(role);
     }
 
+    //list all the role
     @Override
     public List<Role> findAll() {
         return roleRepository.findAll();
