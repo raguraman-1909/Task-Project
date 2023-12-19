@@ -4,7 +4,6 @@ Application for managing tasks for a team or a small company
 
 **Features:**
 Most features require logging in
-Not authorized users have access to the welcome screen and login or registration panel
 
 **Admin (manager) can:**
 
