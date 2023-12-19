@@ -16,6 +16,7 @@ Most features require logging in
 •	Switch task as completed/uncompleted
 
 **Common user (employee) can:**
+
 •	Create task only for himself
 
 •	View list of all users with no action allowed
@@ -25,6 +26,7 @@ Most features require logging in
 •	Switch owned task as completed/uncompleted
 
 **Every authorized user can:**
+
 View his own profile
 
 **Built With:**
