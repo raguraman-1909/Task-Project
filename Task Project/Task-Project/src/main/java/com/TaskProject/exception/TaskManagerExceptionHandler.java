@@ -25,12 +25,9 @@ public class TaskManagerExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(InvalidTaskException.class)
-    public ResponseEntity<String> handleInvalidTaskException(InvalidTaskException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-    }
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFound(InvalidTaskException ex) {
+    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
 }

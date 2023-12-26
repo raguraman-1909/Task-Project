@@ -1,53 +1,31 @@
 package com.TaskProject.service;
 
-import com.TaskProject.model.Role;
 import com.TaskProject.model.User;
-import com.TaskProject.repository.RoleRepository;
-import com.TaskProject.repository.TaskRepository;
 import com.TaskProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private static final String ADMIN="ADMIN";
-    private static final String USER="USER";
 
-    private UserRepository userRepository;
-    private TaskRepository taskRepository;
-    private RoleRepository roleRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           TaskRepository taskRepository,
-                           RoleRepository roleRepository,
-                           BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.taskRepository = taskRepository;
-        this.roleRepository = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
-    public User createUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role userRole = roleRepository.findByRole(USER);
-        user.setRoles(new ArrayList<>(Collections.singletonList(userRole)));
-        return userRepository.save(user);
-    }
+    public Optional<User> createUser(User user) {
 
-    @Override
-    public User changeRoleToAdmin(User user) {
-        Role adminRole = roleRepository.findByRole(ADMIN);
-        user.setRoles(new ArrayList<>(Collections.singletonList(adminRole)));
-        return userRepository.save(user);
+        if (!isUserEmailPresent(user.getEmail())) {
+            return Optional.of(userRepository.save(user));
+        } else {
+            return Optional.empty(); // User with the same email already exists
+        }
     }
 
     @Override
@@ -62,19 +40,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserEmailPresent(String email) {
-        return userRepository.findByEmail(email) != null;
+        return userRepository.existsByEmail(email);
     }
 
     @Override
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public Optional<User> getUserById(Long userId) {
+        return userRepository.findById(userId);
     }
 
     @Override
     public void deleteUser(Long id) {
-        User user = userRepository.getOne(id);
-        user.getTasksOwned().forEach(task -> task.setOwner(null));
-        userRepository.delete(user);
+        userRepository.deleteById(id);
     }
-
 }

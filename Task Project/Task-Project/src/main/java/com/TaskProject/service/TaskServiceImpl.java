@@ -3,6 +3,7 @@ package com.TaskProject.service;
 import com.TaskProject.model.Task;
 import com.TaskProject.model.User;
 import com.TaskProject.repository.TaskRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,14 @@ public class TaskServiceImpl implements TaskService {
     //Updates an existing task.
     @Override
     public void updateTask(Long id, Task updatedTask) {
-        Task task = taskRepository.getOne(id);
+        Task task = taskRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Task not found with id: " + id));
         task.setName(updatedTask.getName());
         task.setDescription(updatedTask.getDescription());
         task.setDate(updatedTask.getDate());
         taskRepository.save(task);
     }
+
 
     @Override
     public void deleteTask(Long id) {    //Deleting the task by its id

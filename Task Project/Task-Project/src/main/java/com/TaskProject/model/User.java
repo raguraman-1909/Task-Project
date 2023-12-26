@@ -65,7 +65,7 @@ public class User {
     public User(@Email @NotEmpty String email,
                 @NotEmpty String name,
                 @NotEmpty @Length(min = 5) String password
-                ) {
+    ) {
         this.email = email;
         this.name = name;
         this.password = password;
@@ -155,4 +155,3 @@ public class User {
         return Objects.hash(id, email, name, password, tasksOwned, roles);
     }
 }
-

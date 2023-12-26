@@ -3,12 +3,11 @@ package com.TaskProject.service;
 import com.TaskProject.model.User;
 
 import java.util.List;
-
+import java.util.Optional;
 
 public interface UserService {
-    User createUser(User user);
 
-    User changeRoleToAdmin(User user);
+    Optional<User> createUser(User user);
 
     List<User> findAll();
 
@@ -16,7 +15,7 @@ public interface UserService {
 
     boolean isUserEmailPresent(String email);
 
-    User getUserById(Long userId);
+    Optional<User> getUserById(Long userId);
 
     void deleteUser(Long id);
 }

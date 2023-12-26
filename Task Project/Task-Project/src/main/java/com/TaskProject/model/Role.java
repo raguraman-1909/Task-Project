@@ -7,6 +7,7 @@ import java.util.Objects;
 
 //Represents a user role in the system.
 @Entity
+@Table(name = "role_details")
 public class Role {
 
     @Id

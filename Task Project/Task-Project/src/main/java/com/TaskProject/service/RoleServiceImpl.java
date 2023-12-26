@@ -10,7 +10,7 @@ import java.util.List;
 //Implementation of the RoleService interface for managing roles.
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {
@@ -20,8 +20,13 @@ public class RoleServiceImpl implements RoleService {
     //to create a role
     @Override
     public Role createRole(Role role) {
+        Role existingRole = roleRepository.findByRole(role.getRole());
+        if (existingRole != null) {
+            return existingRole;
+        }
         return roleRepository.save(role);
     }
+
 
     //list all the role
     @Override
